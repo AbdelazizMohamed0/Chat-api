@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChatRoomChannel < ApplicationCable::Channel
   def subscribed
     chat_room = ChatRoom.find(params[:id])

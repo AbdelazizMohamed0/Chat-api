@@ -10,21 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220417231748) do
+ActiveRecord::Schema.define(version: 20220419161239) do
 
   create_table "apps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string   "app_no"
     t.string   "app_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "Chat_Count"
     t.index ["app_no"], name: "index_apps_on_app_no", unique: true, using: :btree
   end
 
   create_table "chat_rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3" do |t|
     t.string   "name"
     t.integer  "app_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "Message_Count"
     t.index ["app_id"], name: "index_chat_rooms_on_app_id", using: :btree
   end
 
