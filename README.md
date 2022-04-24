@@ -86,6 +86,17 @@ $ curl -X GET 'http://localhost:3000/applications/fPrv7vr57dkUsP4KfZ4BdSmt/chats
 
  
  ## How This Works
+ -Cable — the WebSocket connection used to communicate all data for all channels.
+
+-Channel — similar to what a controller does in a regular MVC setup. It holds the logic and defines behavior for server and client methods, such as subscriptions.
+
+-Pub/Sub, or Publish-Subscribe — a message queue model whereby “publishers” send data to “subscribers” without specifying individual recipients. Action Cable uses this paradigm to communicate between the server and multiple clients.
+Streams — these provide the mechanism by which channels broadcast to their subscribers.
+
+-Broadcasting — the pub/sub link through which anything transmitted by a publisher is routed directly to the channel subscribers who are listening. Each channel can stream zero or more broadcastings.
+
+- Redis — an open source, in-memory data structure store, used as a database, cache, and message broker. Action Cable uses Redis’ pub/sub functions to keep track of what’s been broadcasted on what cable and to whom.
+ 
  Chat/Message creation API uses `Redis` for two purposes, first of which is to cache and determine the next chat number
  and message number to respond to the user with, second of which is to queue jobs to `background job` workers hosted at the main Rails API. These `Sidekiq`
  workers are responsible of handling requests to create messages in the background, to allow for better scaling in case a huge number of requests is received.
